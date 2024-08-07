@@ -1,0 +1,12 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    container_name: ggudock_redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+# 도커 컨테이너 생성
+# docker-compose -f docker-compose-redis.yml up -d
+# 도커 컨테이너 실행
+# docker exec -it ggudock_redis redis-cli --raw

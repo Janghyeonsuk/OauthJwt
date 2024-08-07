@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .center{
+            display: flex;
+            justify-content: center ;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .btn{
+            width: 300px;
+            height: 100px;
+            margin-bottom : 30px;
+            text-align: center;
+        }
+
+        .btn-google{
+            background-color:mediumblue;
+            color:white;
+        }
+
+        .btn-kakao{
+            background-color: yellow;
+            color:black;
+        }
+
+        .btn-naver{
+            background-color: forestgreen;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <a class="btn btn-google" th:href="@{/oauth2/authorization/google}" >Google login</a>
+    <a class="btn btn-kakao" th:href="@{/oauth2/authorization/kakao}" >Kakao login</a>
+    <a class="btn btn-naver" th:href="@{/oauth2/authorization/naver}" >Naver login</a>
+</div>
+</body>
+</html>
