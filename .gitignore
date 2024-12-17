@@ -46,4 +46,4 @@ src/main/resources/application-oauth.yml
 src/main/resources/application-redis.yml
 
 ### mac ###
-**/.DS_Store
+.DS_Store
