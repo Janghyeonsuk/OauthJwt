@@ -1,5 +1,6 @@
 package com.example.oauthjwt.config;
 
+import com.example.oauthjwt.auth.cookie.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.example.oauthjwt.auth.handler.JwtAccessDeniedHandler;
 import com.example.oauthjwt.auth.handler.JwtAuthenticationEntryPoint;
 import com.example.oauthjwt.auth.handler.OAuth2FailureHandler;
@@ -27,7 +28,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
     private final CustomOAuth2UserService oAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
@@ -79,7 +80,9 @@ public class SecurityConfig {
                                 .successHandler(oAuth2SuccessHandler)
                                 .failureHandler(new OAuth2FailureHandler())
                 )
-
+                .oauth2Login(oauth2 -> oauth2
+                        .authorizationEndpoint(config ->
+                                config.authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)))
                 // jwt 인증 관련 설정
                 .addFilterBefore(tokenAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class)
